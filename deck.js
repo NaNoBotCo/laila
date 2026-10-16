@@ -42,7 +42,7 @@
     const cta = document.createElement('a');
     cta.className = 'cta';
     cta.href = root + 'hello/';
-    cta.innerHTML = 'Start with one business <b>›</b>';
+    cta.innerHTML = 'One business, first month free <b>›</b>';
     document.body.appendChild(cta);
   }
 
