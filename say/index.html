@@ -3,7 +3,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Presenter lines · Laila</title>
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="../deck.css?v=4">
+<link rel="stylesheet" href="../deck.css?v=5">
 <style>
 main{max-width:760px}
 .tip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 26px}
@@ -41,7 +41,7 @@ main{max-width:760px}
 </div>
 <p style="margin-top:30px"><a class="btn gold" href="../?say">Open the deck with lines ›</a></p>
 </main>
-<script src="../deck.js?v=4" data-noslide></script>
+<script src="../deck.js?v=5" data-noslide></script>
 <script>
 document.getElementById('lines').innerHTML=LAILA.SAY.map((s,i)=>`<div class="ln${i===LAILA.SAY.length-1?' last':''}"><a class="k" href="../${s[0]}?say">${i+1}</a><div><div class="en">${s[1]}</div><div class="th" lang="th">${s[2]}</div><div class="tp">👆 ${s[3]}</div></div></div>`).join('');
 </script>
