@@ -15,6 +15,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .try{display:inline-block;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px}
 .sub{color:var(--muted);margin:0 0 22px;font-size:18px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.grid2>*{min-width:0}
 @media (max-width:760px){.grid2{grid-template-columns:1fr}}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 1px 0 rgba(0,0,0,.02),0 8px 30px -18px rgba(80,60,20,.25)}
 .panel h2{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:600}
