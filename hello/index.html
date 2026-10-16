@@ -4,7 +4,7 @@
 <title>Start with one business · Laila</title>
 <meta name="description" content="Send one sheet on LINE today. Tomorrow at 8:00 it is on your phone. The first business is free.">
 <meta property="og:title" content="Start with one business · Laila"><meta property="og:image" content="https://nanobotco.github.io/laila/card.png"><meta property="og:image:alt" content="Laila. Twenty businesses. One LINE. Ten working demos from motdang.net">
-<link rel="stylesheet" href="../deck.css">
+<link rel="stylesheet" href="../deck.css?v=4">
 <style>
 .ask{text-align:center;max-width:720px;margin:0 auto}
 .ask h1{font-size:clamp(44px,9vw,84px)}
@@ -25,7 +25,7 @@
 </head><body>
 <main class="ask">
   <h1>Start with<br><em>one business.</em></h1>
-  <a class="big" id="go" href="#" target="_blank" rel="noopener">💬 Send one sheet on LINE</a>
+  <a class="big" id="go" href="https://line.me/R/ti/p/@964yxgnk" target="_blank" rel="noopener">💬 Send one sheet on LINE</a>
   <div class="free">The first business is free.</div>
   <div id="qr"></div>
   <p class="small">Scan to open LINE · @964yxgnk</p>
@@ -41,10 +41,11 @@
   <p class="small" style="margin-top:14px">You own the data. A short agreement under the PDPA, Thailand’s personal data law.</p>
   <p class="small" style="margin-top:24px">Nan · motdang.net Co., Ltd. · 869/77 Thai Wiwat Uthit Rd, Chiang Rai, next door · <a href="mailto:hello@motdang.net?subject=Laila%20panel">hello@motdang.net</a></p>
 </main>
-<script src="../deck.js"></script>
+<script src="../deck.js?v=4"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-document.getElementById('go').href=LAILA.LINE_ASK;
-new QRCode(document.getElementById('qr'),{text:LAILA.LINE_ASK,width:320,height:320,colorDark:'#1c1a17',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+const ASK='https://line.me/R/oaMessage/%40964yxgnk/?'+encodeURIComponent('สวัสดีค่ะ อยากลองธุรกิจแรกค่ะ · Hi, I would like to try one business.');
+document.getElementById('go').href=ASK;
+new QRCode(document.getElementById('qr'),{text:'https://line.me/R/ti/p/@964yxgnk',width:320,height:320,colorDark:'#1c1a17',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
 </script>
 </body></html>
