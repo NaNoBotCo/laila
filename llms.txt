@@ -1,0 +1,20 @@
+# Laila · twenty businesses, one LINE
+
+> A pitch from motdang.net Co., Ltd. to Laila Group, Chiang Rai, Thailand: one LINE control panel for all of Laila's businesses, shown as ten working demos.
+
+- Laila Group: 869/51 Thai Viwat Alley, Wiang, Mueang Chiang Rai 57000 · +66 84 739 9996 · tours, slow boat to Laos, cars and scooters
+- Laila Money Exchange (Laila Luxe Co., Ltd.): 48–49 Thai Wiwat Alley, Chiang Rai · 053-160611 · https://laila-exchange.nanobotco.workers.dev/
+- Laila's Visa Services: 48–49 Thai Wiwat Alley, Chiang Rai · 065-551-4499 · https://www.visaservicesthailand.com
+- Laila's Designer Consignment: Thai Wiwat Alley, Chiang Rai
+- Chiang Mai Visa Desk: https://chiangmaivisadesk.com/
+
+## Demos
+- [One LINE](https://nanobotco.github.io/laila/line/)
+- [Who finds you](https://nanobotco.github.io/laila/find/)
+- [Your door, on the map](https://nanobotco.github.io/laila/maps/)
+- [What Google's robots read](https://nanobotco.github.io/laila/robots/)
+- [22 languages](https://nanobotco.github.io/laila/talk/)
+- [Live rates](https://nanobotco.github.io/laila/rates/)
+- [One set of books](https://nanobotco.github.io/laila/books/)
+- [Every link, a card](https://nanobotco.github.io/laila/card/)
+- [Money already spent](https://nanobotco.github.io/laila/sunk/)

@@ -1,0 +1,40 @@
+# Laila Money Exchange · ไลลา มันนี่เอ็กเชนจ์
+
+> Money exchange counter in Chiang Rai, Thailand, on Thai Wiwat Alley by the Night Bazaar. It buys and sells foreign cash for Thai baht. US dollars are priced by note size: 50–100, 5–20 and 1–2.
+
+- Address: 48–49 Thai Wiwat Alley, Wiang, Mueang Chiang Rai 57000, Thailand
+- Thai address: 48-49 ซอยไทยวิวัฒน์ (ถนนไทยวิวัฒน์อุทิศ) ตำบลเวียง อำเภอเมืองเชียงราย 57000
+- Map pin: 19.9060, 99.8325
+- Phone: 053-160611 · 063-743-6893 (+6653160611 · +66637436893)
+- Company: Laila Luxe Co., Ltd. · บริษัท ไลลา ลักซ์ จำกัด, registration 0575568004841
+- Mot Dang Place ID: MD-C2BVE, https://motdang.net/cr/p/laila-money-exchange-crcuratedlailamoneyexchange.html
+
+## Rates, 16 Oct 2026, 10:01 (Bangkok)
+
+Thai baht per unit. Buy is what the counter pays for your foreign cash; sell is what you pay for it. Rates may change without notice (อัตราอาจเปลี่ยนแปลงได้โดยไม่ต้องแจ้งล่วงหน้า).
+
+| Currency | Name | Buy | Sell |
+|---|---|---|---|
+| USD 50–100 | US Dollar 50–100 · ดอลลาร์สหรัฐ ใบ 50–100 | 33.26 | 33.79 |
+| USD 5–20 | US Dollar 5–20 · ดอลลาร์สหรัฐ ใบ 5–20 | 33.02 | 33.79 |
+| USD 1–2 | US Dollar 1–2 · ดอลลาร์สหรัฐ ใบ 1–2 | 32.82 | 33.79 |
+| EUR | Euro · ยูโร | 37.24 | 37.92 |
+| GBP | British Pound · ปอนด์อังกฤษ | 44.05 | 44.85 |
+| CNY | Chinese Yuan · หยวนจีน | 4.953 | 5.053 |
+| JPY / 100 | Japanese Yen · เยนญี่ปุ่น | 21.02 | 21.40 |
+| AUD | Australian Dollar · ดอลลาร์ออสเตรเลีย | 22.94 | 23.41 |
+| SGD | Singapore Dollar · ดอลลาร์สิงคโปร์ | 25.88 | 26.41 |
+| HKD | Hong Kong Dollar · ดอลลาร์ฮ่องกง | 4.225 | 4.319 |
+| KRW / 100 | Korean Won · วอนเกาหลี | 2.463 | 2.523 |
+| MYR | Malaysian Ringgit · ริงกิตมาเลเซีย | 8.114 | 8.311 |
+| CHF | Swiss Franc · ฟรังก์สวิส | 40.04 | 40.84 |
+| CAD | Canadian Dollar · ดอลลาร์แคนาดา | 23.35 | 23.87 |
+
+## Links
+
+- [Home](https://laila-exchange.nanobotco.workers.dev/): rates, converter, drawn map, directions
+- [Rate board](https://laila-exchange.nanobotco.workers.dev/board): the screen outside the shop
+- [Rates as JSON](https://laila-exchange.nanobotco.workers.dev/api/rates)
+- [Mot Dang place page](https://motdang.net/cr/p/laila-money-exchange-crcuratedlailamoneyexchange.html)
+- [Bank of Thailand reference rates](https://www.bot.or.th/en/statistics/exchange-rate.html)
+- [Chiang Rai on Wikipedia](https://en.wikipedia.org/wiki/Chiang_Rai)

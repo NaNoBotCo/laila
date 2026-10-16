@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Laila · twenty businesses, one LINE</title>
+<meta name="description" content="For Laila Group, Chiang Rai: ten working demos from motdang.net.">
+<link rel="canonical" href="https://nanobotco.github.io/laila/">
+<meta property="og:type" content="website"><meta property="og:url" content="https://nanobotco.github.io/laila/">
+<meta property="og:title" content="Laila · twenty businesses, one LINE"><meta property="og:description" content="Ten working demos from motdang.net, for Laila Group, Chiang Rai.">
+<meta property="og:image" content="https://nanobotco.github.io/laila/card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nanobotco.github.io/laila/card.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>♛</text></svg>">
+<link rel="stylesheet" href="deck.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Laila · twenty businesses, one LINE","url":"https://nanobotco.github.io/laila/","author":{"@type":"Organization","name":"motdang.net Co., Ltd.","url":"https://motdang.net/"},"about":{"@type":"Organization","name":"Laila Group","address":{"@type":"PostalAddress","streetAddress":"869/51 Thai Viwat Alley","addressLocality":"Mueang Chiang Rai","postalCode":"57000","addressCountry":"TH"},"telephone":"+66 84 739 9996"}}</script>
+<style>
+.cover{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;min-height:60vh}
+@media (max-width:760px){.cover{grid-template-columns:1fr}}
+.crown{font-size:64px;color:var(--gold);line-height:1}
+.biz{display:flex;flex-wrap:wrap;gap:8px}
+.biz span{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:15px}
+.biz span.more{border-style:dashed;color:var(--muted)}
+.hub{position:relative;aspect-ratio:1;max-width:420px;margin:auto;width:100%}
+.hub .phone{position:absolute;inset:34% 34%;background:var(--green);border-radius:22%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:clamp(16px,3vw,24px);box-shadow:0 10px 40px -10px rgba(6,199,85,.6)}
+.hub i{position:absolute;width:13%;aspect-ratio:1;border-radius:50%;background:#fff;border:2px solid var(--gold2);display:grid;place-items:center;font-style:normal;font-size:clamp(14px,3vw,22px);transform:translate(-50%,-50%);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{border-color:var(--gold)}}
+.hub svg{position:absolute;inset:0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:36px}
+.tiles a{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;text-decoration:none;transition:transform .15s}
+.tiles a:hover{transform:translateY(-3px);border-color:var(--gold)}
+.tiles b{display:block;font-size:26px;margin-bottom:6px}
+.tiles span{font-weight:600}
+</style>
+</head><body>
+<main>
+  <div class="cover">
+    <div>
+      <div class="crown">♛</div>
+      <h1>Laila.<br>Twenty businesses.<br><em>One LINE.</em></h1>
+      <div class="biz">
+        <span>Laila Money Exchange</span><span>Visa Services Thailand</span><span>Chiang Mai Visa Desk</span><span>Slow boat to Laos</span><span>Day tours</span><span>Cars &amp; scooters</span><span>Designer Consignment</span><span>Laila Hostel</span><span>Pro Thai Property</span><span class="more">+ the rest</span>
+      </div>
+      <p style="margin-top:26px"><a class="btn gold" href="line/">Start ›</a></p>
+    </div>
+    <div class="hub" id="hub" aria-hidden="true"><svg viewBox="0 0 100 100" id="spokes"></svg><div class="phone">LINE</div></div>
+  </div>
+  <div class="tiles">
+    <a href="line/"><b>💬</b><span>One LINE</span></a>
+    <a href="find/"><b>🔎</b><span>Who finds you</span></a>
+    <a href="maps/"><b>📍</b><span>Your door, on the map</span></a>
+    <a href="robots/"><b>🤖</b><span>What Google's robots read</span></a>
+    <a href="talk/"><b>🗣️</b><span>22 languages</span></a>
+    <a href="rates/"><b>💱</b><span>Live rates</span></a>
+    <a href="books/"><b>📒</b><span>One set of books</span></a>
+    <a href="card/"><b>🪪</b><span>Every link, a card</span></a>
+    <a href="sunk/"><b>⚖️</b><span>Money already spent</span></a>
+  </div>
+  <p class="hint">← → or swipe</p>
+</main>
+<script>
+const icons=['💱','🛂','🚤','🚐','🛵','👜','🛏️','🏠','🧾','📊','🗺️','🎫'];
+const hub=document.getElementById('hub'),svg=document.getElementById('spokes');
+icons.forEach((t,k)=>{const a=k/icons.length*Math.PI*2-Math.PI/2,x=50+42*Math.cos(a),y=50+42*Math.sin(a);
+const i=document.createElement('i');i.textContent=t;i.style.left=x+'%';i.style.top=y+'%';i.style.animationDelay=(k*.25)+'s';hub.appendChild(i);
+svg.insertAdjacentHTML('beforeend',`<line x1="50" y1="50" x2="${x}" y2="${y}" stroke="#e9dcc0" stroke-width=".6" stroke-dasharray="1.5 1.5"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1.2s" repeatCount="indefinite"/></line>`);});
+</script>
+<script src="deck.js"></script>
+</body></html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Money already spent · Laila</title>
+<meta name="description" content="Sunk cost, by doing: move the sliders and see which one changes the answer.">
+<meta property="og:title" content="Money already spent · Laila"><meta property="og:image" content="https://nanobotco.github.io/laila/card.png">
+<link rel="stylesheet" href="../deck.css">
+<style>
+.board{display:flex;gap:16px;justify-content:center;align-items:flex-end;height:380px;padding-bottom:10px}
+.col{width:42%;max-width:220px;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.b{border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:700;text-align:center;font-size:15px;transition:height .25s;overflow:hidden;margin-top:6px;min-height:0}
+.gone{background:var(--gone);color:#3a3a3c}
+.keep{background:var(--red)}
+.sw{background:var(--teal)}
+.lab{text-align:center;font-weight:800;font-size:20px;margin-top:8px}
+.sl{margin:16px 0}
+.sl label{display:flex;justify-content:space-between;font-weight:600}
+.sl input{width:100%;accent-color:var(--gold)}
+.sl.grey input{accent-color:#999}
+.verdict{font-family:var(--display);font-size:clamp(26px,4.5vw,40px);font-weight:700;line-height:1.15;min-height:2.4em}
+.flash{color:var(--gold);font-weight:700;opacity:0;transition:opacity .3s;height:1.4em}
+.flash.on{opacity:1}
+.fx{display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-size:22px}
+.fx .bd{background:#111;color:#ffd84d;font-family:ui-monospace,Menlo,monospace;padding:10px 14px;border-radius:8px;font-size:26px}
+.fx s{color:var(--muted)}
+</style>
+</head><body>
+<main>
+<span class="try">Try it · move each slider</span>
+<h1>Money already spent<br><em>is gone either way.</em></h1>
+<div class="grid2">
+  <div class="panel noswipe">
+    <div class="board">
+      <div class="col"><div class="b keep" id="bk"></div><div class="b gone" id="g1">Already paid</div><div class="lab">Keep going</div></div>
+      <div class="col"><div class="b sw" id="bs"></div><div class="b gone" id="g2">Already paid</div><div class="lab">Switch</div></div>
+    </div>
+  </div>
+  <div class="panel noswipe">
+    <div class="sl grey"><label>Already paid <span id="vg"></span></label><input id="g" type="range" min="0" max="3000000" step="50000" value="1500000"></div>
+    <div class="flash" id="fl">The answer didn't change.</div>
+    <div class="sl"><label>Keep going · a month <span id="vk"></span></label><input id="k" type="range" min="0" max="600000" step="10000" value="480000"></div>
+    <div class="sl"><label>Switch · a month <span id="vs"></span></label><input id="s" type="range" min="0" max="600000" step="10000" value="300000"></div>
+    <div class="verdict" id="vd"></div>
+  </div>
+</div>
+<div class="panel" style="margin-top:22px">
+  <h2>At the counter</h2>
+  <div class="fx"><span>Bought at <s>36.00</s></span><span>→</span><span class="bd">USD 33.26</span><span>→ sell at <b>today's</b> rate.</span></div>
+</div>
+</main>
+<script>
+const $=id=>document.getElementById(id),f=n=>'฿'+Math.round(n).toLocaleString('en-US');
+let lastV='',t;
+function draw(src){
+  const g=+$('g').value,k=+$('k').value,s=+$('s').value,H=330,max=3000000+600000*12;
+  const gh=g/max*H,kh=k*12/max*H,sh=s*12/max*H;
+  $('g1').style.height=$('g2').style.height=gh+'px';$('bk').style.height=kh+'px';$('bs').style.height=sh+'px';
+  $('bk').textContent=kh>34?'Next 12 months':'';$('bs').textContent=sh>34?'Next 12 months':'';$('g1').textContent=$('g2').textContent=gh>34?'Already paid':'';
+  $('vg').textContent=f(g);$('vk').textContent=f(k);$('vs').textContent=f(s);
+  const d=(k-s)*12;const v=d>0?`Switch saves ${f(d)} a year.`:d<0?`Keep going saves ${f(-d)} a year.`:'Same cost. Pick on value.';
+  $('vd').textContent=v;
+  if(src==='g'){$('fl').classList.add('on');clearTimeout(t);t=setTimeout(()=>$('fl').classList.remove('on'),1400)}
+}
+['g','k','s'].forEach(id=>$(id).addEventListener('input',()=>draw(id)));
+draw();
+</script>
+<script src="../deck.js"></script>
+</body></html>

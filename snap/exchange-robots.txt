@@ -1,0 +1,197 @@
+# Laila Money Exchange, Chiang Rai: today's buy and sell rates for foreign cash.
+# The shop in one page for machines: https://laila-exchange.nanobotco.workers.dev/llms.txt
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Googlebot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: GoogleOther
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Amazonbot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Applebot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Claude-User
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Claude-SearchBot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Perplexity-User
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: DuckAssistBot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: MistralAI-User
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: cohere-ai
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: YouBot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: CCBot
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+User-agent: Bytespider
+Allow: /
+Allow: /api/rates
+Disallow: /counter
+Disallow: /reports
+Disallow: /receipt/
+Disallow: /api/
+
+Sitemap: https://laila-exchange.nanobotco.workers.dev/sitemap.xml

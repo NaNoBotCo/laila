@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What Google's robots read · Laila</title>
+<meta name="description" content="The same page, as a person sees it and as Google's robot reads it: Laila Money Exchange on Mot Dang.">
+<meta property="og:title" content="What Google's robots read · Laila"><meta property="og:image" content="https://nanobotco.github.io/laila/card.png">
+<link rel="stylesheet" href="../deck.css">
+<style>
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:4px;background:#fff;margin-bottom:12px}
+.toggle button{border:0;background:transparent;border-radius:999px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer}
+.toggle button.on{background:var(--ink);color:#fff}
+#human{height:560px}
+.robot{display:none}
+.robot .k{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:14px 0 4px}
+.robot .v{font-size:16px}
+.serp{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;margin-bottom:6px}
+.serp .u{font-size:13px;color:#4d5156}
+.serp .t{color:#1a0dab;font-size:20px;margin:2px 0}
+.serp .d{font-size:14px;color:#4d5156}
+.bots{display:flex;flex-wrap:wrap;gap:6px}
+.bots span{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#eef7f1;border:1px solid #cfe9d8;border-radius:6px;padding:3px 7px}
+</style>
+</head><body>
+<main>
+<span class="try">Try it · flip the switch</span>
+<h1>What Google's<br><em>robots read.</em></h1>
+<div class="toggle noswipe"><button class="on" data-v="human">👀 You</button><button data-v="robot">🤖 Google</button></div>
+<div class="panel">
+  <iframe id="human" class="frame" title="Laila Money Exchange on Mot Dang" src="https://motdang.net/cr/p/laila-money-exchange-crcuratedlailamoneyexchange.html"></iframe>
+  <div id="robot" class="robot">
+    <div class="k">In the results</div>
+    <div class="serp"><div class="u" id="r-u"></div><div class="t" id="r-t"></div><div class="d" id="r-d"></div></div>
+    <div class="k">The facts, in Google's own format (schema.org)</div>
+    <pre class="mono" id="r-ld"></pre>
+    <div class="k">The words</div>
+    <pre class="mono" id="r-txt" style="max-height:200px"></pre>
+  </div>
+</div>
+<div class="panel noswipe" style="margin-top:22px">
+  <h2>The notes we leave for robots</h2>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-u="../snap/exchange-robots.txt">Exchange · robots.txt</button>
+    <button class="tab" data-u="../snap/exchange-llms.txt">Exchange · llms.txt</button>
+    <button class="tab" data-u="../snap/exchange-sitemap.xml">Exchange · sitemap</button>
+    <button class="tab" data-u="https://motdang.net/llms.txt">Mot Dang · llms.txt (live)</button>
+  </div>
+  <pre class="mono" id="file">…</pre>
+  <p class="small" style="margin-top:14px">Who reads them:</p>
+  <div class="bots"><span>Googlebot</span><span>Bingbot</span><span>Applebot</span><span>GPTBot</span><span>ClaudeBot</span><span>PerplexityBot</span><span>Google-Extended</span><span>Amazonbot</span><span>Meta-ExternalAgent</span><span>DuckAssistBot</span></div>
+  <p class="small">IndexNow: one call tells Bing, Naver, Yandex and Seznam a page changed.</p>
+</div>
+</main>
+<script>
+const URL_='https://motdang.net/cr/p/laila-money-exchange-crcuratedlailamoneyexchange.html';
+let loaded=false;
+async function robot(){
+  if(loaded)return;loaded=true;
+  try{
+    const h=await (await fetch(URL_)).text();const doc=new DOMParser().parseFromString(h,'text/html');
+    document.getElementById('r-u').textContent='motdang.net › cr › p › laila-money-exchange';
+    document.getElementById('r-t').textContent=doc.title;
+    document.getElementById('r-d').textContent=(doc.querySelector('meta[name=description]')||{}).content||'';
+    const ld=[...doc.querySelectorAll('script[type="application/ld+json"]')].map(s=>{try{return JSON.parse(s.textContent)}catch(e){return null}}).filter(x=>x&&x['@type']==='LocalBusiness');
+    document.getElementById('r-ld').textContent=JSON.stringify(ld[0]||{},null,2);
+    doc.querySelectorAll('script,style,noscript,svg,nav,header,footer').forEach(n=>n.remove());
+    document.getElementById('r-txt').textContent=(doc.body.innerText||doc.body.textContent).replace(/\s+\n/g,'\n').replace(/[ \t]+/g,' ').replace(/\n{2,}/g,'\n').trim().slice(0,1400);
+  }catch(e){document.getElementById('r-txt').textContent='Could not reach motdang.net just now.'}
+}
+document.querySelectorAll('.toggle button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.toggle button').forEach(x=>x.classList.toggle('on',x===b));
+  const r=b.dataset.v==='robot';document.getElementById('human').style.display=r?'none':'block';document.getElementById('robot').style.display=r?'block':'none';if(r)robot();
+});
+async function file(u){const f=document.getElementById('file');f.textContent='…';try{f.textContent=(await (await fetch(u)).text()).slice(0,6000)}catch(e){f.textContent='Could not load.'}}
+document.querySelectorAll('#tabs .tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('#tabs .tab').forEach(x=>x.classList.toggle('on',x===t));file(t.dataset.u)});
+file('../snap/exchange-robots.txt');
+</script>
+<script src="../deck.js"></script>
+</body></html>

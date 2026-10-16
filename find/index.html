@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Who finds you · Laila</title>
+<meta name="description" content="Google Maps and Mot Dang, asked the same question about Laila's businesses.">
+<meta property="og:title" content="Who finds you · Laila"><meta property="og:image" content="https://nanobotco.github.io/laila/card.png">
+<link rel="stylesheet" href="../deck.css">
+<style>
+.shot{width:100%;border-radius:12px;border:1px solid var(--line);display:block}
+.res{list-style:none;padding:0;margin:10px 0 0}
+.res li{display:flex;gap:10px;align-items:center;padding:10px;border-radius:12px;border:1px solid var(--line);margin-bottom:8px;background:#fff;animation:pop .25s ease-out both}
+.res li.her{border-color:var(--gold);background:#fffaf0;box-shadow:0 0 0 3px #f5e9cc}
+.res li .k{font-size:22px;width:30px;text-align:center}
+.res li a{font-weight:600;text-decoration:none}
+.res li .p{font-size:13px;color:var(--muted)}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}}
+.vs{font-family:var(--display);font-size:22px;font-weight:700;margin:0 0 8px}
+form{display:flex;gap:8px}
+</style>
+</head><body>
+<main>
+<span class="try">Try it · search</span>
+<h1>Who finds <em>you?</em></h1>
+<div class="grid2">
+  <div class="panel">
+    <p class="vs">Google Maps</p>
+    <img class="shot" src="../img/google-maps-2026-10-16.jpg" alt="Google Maps search for Laila Money Exchange Chiang Rai, 16 October 2026: two money changers in Chiang Mai, Super Money and mr.pierre" width="800" height="600">
+    <p class="small">16 Oct 2026, “Laila Money Exchange Chiang Rai”: two changers in <b>Chiang Mai</b>.</p>
+    <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/Laila+Money+Exchange+Chiang+Rai">Try Google now ↗</a>
+  </div>
+  <div class="panel noswipe">
+    <p class="vs">Mot Dang · live</p>
+    <form id="f"><input id="q" type="search" value="money exchange chiang rai"><button class="btn gold">Search</button></form>
+    <div class="chips">
+      <button class="chip" data-q="money exchange chiang rai">money exchange</button>
+      <button class="chip" data-q="visa chiang rai">visa</button>
+      <button class="chip" data-q="consignment chiang rai">consignment</button>
+      <button class="chip" data-q="แลกเงิน เชียงราย">แลกเงิน</button>
+    </div>
+    <ul class="res" id="res"></ul>
+    <p class="small" id="meta"></p>
+  </div>
+</div>
+</main>
+<script>
+const res=document.getElementById('res'),meta=document.getElementById('meta');
+async function go(q){
+  res.innerHTML='<li>…</li>';
+  const t0=performance.now();
+  try{
+    const r=await fetch('https://motdang.net/api/v1/search?limit=6&q='+encodeURIComponent(q));
+    const d=await r.json();
+    const ms=Math.round(performance.now()-t0);
+    res.innerHTML=d.results.slice(0,6).map((p,k)=>{const her=/laila/i.test(p.id+(p.nameEn||'')+p.name);
+      return `<li class="${her?'her':''}" style="animation-delay:${k*60}ms"><span class="k">${her?'♛':(k+1)}</span><div><a href="${p.url}" target="_blank" rel="noopener">${p.nameEn||p.name}</a><div class="p">${p.nameEn&&p.name!==p.nameEn?p.name+' · ':''}${p.province==='cr'?'Chiang Rai':'Chiang Mai'}</div></div></li>`}).join('')||'<li>Nothing yet.</li>';
+    meta.textContent=`${d.total} places matched · ${ms} ms · motdang.net/api/v1/search`;
+  }catch(e){res.innerHTML='<li>Offline? <a href="https://motdang.net/find?q='+encodeURIComponent(q)+'">Open on motdang.net</a></li>'}
+}
+document.getElementById('f').onsubmit=e=>{e.preventDefault();go(document.getElementById('q').value)};
+document.querySelectorAll('[data-q]').forEach(c=>c.onclick=()=>{document.getElementById('q').value=c.dataset.q;go(c.dataset.q)});
+go('money exchange chiang rai');
+</script>
+<script src="../deck.js"></script>
+</body></html>

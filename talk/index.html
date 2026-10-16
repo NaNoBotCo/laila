@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>22 languages · Laila</title>
+<meta name="description" content="Laila's counter, in 22 languages: type, translate, listen. Live from motdang.net.">
+<meta property="og:title" content="22 languages · Laila"><meta property="og:image" content="https://nanobotco.github.io/laila/card.png">
+<link rel="stylesheet" href="../deck.css">
+<style>
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row select{width:auto;flex:0 0 auto}
+.row input{flex:1;min-width:220px}
+.outp{margin-top:16px;padding:22px;border-radius:16px;background:#fffaf0;border:1px solid var(--gold2);min-height:150px}
+.outp .t{font-size:clamp(28px,5vw,44px);line-height:1.2;font-weight:600}
+.outp .r{color:var(--muted);margin-top:6px;font-size:18px}
+.flags{font-size:28px;letter-spacing:6px;margin:8px 0 16px}
+</style>
+</head><body>
+<main>
+<span class="try">Try it · type, then listen</span>
+<h1>Your counter,<br><em>in 22 languages.</em></h1>
+<div class="flags" aria-hidden="true">🇹🇭 🇨🇳 🇲🇲 🇱🇦 🇰🇭 🇻🇳 🇯🇵 🇰🇷 🇮🇳 🇷🇺 🇫🇷 🇩🇪 🇮🇱 🇸🇦</div>
+<div class="panel noswipe">
+  <form class="row" id="f">
+    <input id="q" type="text" value="How much for 100 dollars?">
+    <select id="to">
+      <option value="th">ไทย</option><option value="zh">中文</option><option value="my">မြန်မာ</option><option value="lo">ລາວ</option><option value="km">ខ្មែរ</option><option value="vi">Tiếng Việt</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="hi">हिन्दी</option><option value="ru">Русский</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="he">עברית</option><option value="ar">العربية</option><option value="en">English</option>
+    </select>
+    <button class="btn gold">Translate</button>
+  </form>
+  <div class="chips">
+    <button class="chip">How much for 100 dollars?</button>
+    <button class="chip">The boat leaves at five in the morning.</button>
+    <button class="chip">Your passport, please.</button>
+    <button class="chip">ร้านเปิดกี่โมง</button>
+  </div>
+  <div class="outp"><div class="t" id="t">…</div><div class="r" id="r"></div>
+    <p style="margin:14px 0 0"><button class="btn ghost" id="say">🔊 Listen</button></p></div>
+  <p class="small" id="meta"></p>
+</div>
+</main>
+<script>
+const LOC={th:'th-TH',zh:'zh-CN',my:'my-MM',lo:'lo-LA',km:'km-KH',vi:'vi-VN',ja:'ja-JP',ko:'ko-KR',hi:'hi-IN',ru:'ru-RU',fr:'fr-FR',de:'de-DE',he:'he-IL',ar:'ar-SA',en:'en-US'};
+async function go(){
+  const q=document.getElementById('q').value.trim(),to=document.getElementById('to').value;if(!q)return;
+  const t=document.getElementById('t');t.textContent='…';document.getElementById('r').textContent='';
+  const t0=performance.now();
+  try{const d=await (await fetch(`https://motdang.net/api/translate?to=${to}&text=${encodeURIComponent(q)}`)).json();
+    t.textContent=d.t||d.error||'—';t.lang=to;t.dir=(to==='he'||to==='ar')?'rtl':'ltr';document.getElementById('r').textContent=d.r||'';
+    document.getElementById('meta').textContent=`${Math.round(performance.now()-t0)} ms · motdang.net/api/translate`;
+  }catch(e){t.textContent='Could not reach motdang.net just now.'}
+}
+document.getElementById('f').onsubmit=e=>{e.preventDefault();go()};
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{document.getElementById('q').value=c.textContent;if(/[฀-๿]/.test(c.textContent))document.getElementById('to').value='en';go()});
+document.getElementById('to').onchange=go;
+document.getElementById('say').onclick=()=>{const u=new SpeechSynthesisUtterance(document.getElementById('t').textContent);u.lang=LOC[document.getElementById('to').value]||'th-TH';speechSynthesis.cancel();speechSynthesis.speak(u)};
+go();
+</script>
+<script src="../deck.js"></script>
+</body></html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your door, on the map · Laila</title>
+<meta name="description" content="Put each of Laila's doors on the map: a pin, a Google Business Profile filled in, and Mot Dang's drawn map.">
+<meta property="og:title" content="Your door, on the map · Laila"><meta property="og:image" content="https://nanobotco.github.io/laila/card.png">
+<link rel="stylesheet" href="../deck.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+#map{height:380px;border-radius:12px}
+.gbp{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.gbp .hd{background:#f1f3f4;padding:14px}
+.gbp .nm{font-size:22px;font-weight:600}
+.gbp .ct{color:#5f6368;font-size:14px}
+.gbp .rw{display:flex;gap:10px;padding:10px 14px;border-top:1px solid #eee;font-size:15px}
+.gbp .rw b{width:24px;text-align:center}
+.gbp .rw.ask{color:#b06000}
+.steps{list-style:none;padding:0;margin:12px 0 0}
+.steps li{display:flex;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}
+.steps input{width:22px;height:22px;accent-color:var(--gold)}
+.steps .who{margin-left:auto;font-size:13px;color:var(--muted)}
+.out{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.out code{background:#faf7f0;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+</style>
+</head><body>
+<main>
+<span class="try">Try it · drag the pin to the door</span>
+<h1>Your door,<br><em>on the map.</em></h1>
+<div class="chips" id="pick"></div>
+<div class="grid2">
+  <div class="panel noswipe">
+    <div id="map"></div>
+    <div class="out"><code id="ll"></code><a class="btn ghost" id="gm" target="_blank" rel="noopener">Google Maps ↗</a><button class="btn ghost" id="cp">Copy</button></div>
+  </div>
+  <div class="panel">
+    <h2>Google Business Profile · filled in</h2>
+    <div class="gbp">
+      <div class="hd"><div class="nm" id="g-nm"></div><div class="ct" id="g-ct"></div></div>
+      <div class="rw"><b>📍</b><span id="g-ad"></span></div>
+      <div class="rw"><b>📞</b><span id="g-ph"></span></div>
+      <div class="rw"><b>🌐</b><span id="g-web"></span></div>
+      <div class="rw ask"><b>🕘</b><span>Hours: Laila's to say</span></div>
+    </div>
+    <ul class="steps">
+      <li><input type="checkbox" checked disabled> We fill it in <span class="who">motdang</span></li>
+      <li><input type="checkbox" id="s2"> <label for="s2">A short video at the door, for Google's check</label> <span class="who">Laila, 2 min</span></li>
+      <li><input type="checkbox" id="s3"> <label for="s3">Google approves</label> <span class="who">Google, days</span></li>
+      <li><input type="checkbox" id="s4"> <label for="s4">Photos, hours, posts kept fresh</label> <span class="who">motdang, weekly</span></li>
+    </ul>
+  </div>
+</div>
+<div class="panel" style="margin-top:22px">
+  <h2>Already on Mot Dang's drawn map</h2>
+  <iframe class="frame" style="height:420px" loading="lazy" title="Mot Dang drawn map of Chiang Rai with Laila Money Exchange pinned" src="https://motdang.net/sites/doodle-chiang-rai/?embed=1&pin=19.9060,99.8325&pn=Laila%20Money%20Exchange&s=34000"></iframe>
+</div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const PLACES=[
+ {k:'💱 Exchange',nm:'Laila Money Exchange',ct:'Currency exchange service',ad:'48–49 Thai Wiwat Alley, Wiang, Mueang Chiang Rai 57000',ph:'053-160611',web:'laila-exchange.nanobotco.workers.dev',ll:[19.9060,99.8325]},
+ {k:'🚤 Laila Group',nm:'Laila Group · tours, slow boat, cars',ct:'Tour agency',ad:'869/51 Thai Viwat Alley, Wiang, Mueang Chiang Rai 57000',ph:'+66 84 739 9996',web:'slowboatthailandlaos.com',ll:[19.90606,99.83246]},
+ {k:'🛂 Visa',nm:"Laila's Visa Services",ct:'Visa consultant',ad:'48–49 Thai Wiwat Alley, Wiang, Mueang Chiang Rai 57000',ph:'065-551-4499',web:'visaservicesthailand.com',ll:[19.90612,99.83262]},
+ {k:'👜 Consignment',nm:"Laila's Designer Consignment",ct:'Consignment shop',ad:'Thai Wiwat Alley, beside the visa office, Mueang Chiang Rai 57000',ph:'Laila\'s to say',web:'—',ll:[19.90598,99.83268]}
+];
+const map=L.map('map',{scrollWheelZoom:false}).setView(PLACES[0].ll,19);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:20,maxNativeZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+const ic=t=>L.divIcon({className:'',html:`<div style="font-size:30px;transform:translate(-50%,-90%);filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))">${t}</div>`});
+let cur=0;const pins=PLACES.map((p,i)=>{const m=L.marker(p.ll,{draggable:true,icon:ic(p.k.split(' ')[0])}).addTo(map);m.on('dragend',()=>{p.ll=[m.getLatLng().lat,m.getLatLng().lng];show(i)});m.on('click',()=>show(i));return m});
+function show(i){cur=i;const p=PLACES[i];document.querySelectorAll('#pick .chip').forEach((c,k)=>c.classList.toggle('on',k===i));
+ const ll=p.ll.map(v=>v.toFixed(6)).join(', ');document.getElementById('ll').textContent=ll;document.getElementById('gm').href='https://www.google.com/maps?q='+p.ll.join(',');
+ for(const f of ['nm','ct','ad','ph','web'])document.getElementById('g-'+f).textContent=p[f];}
+const pick=document.getElementById('pick');PLACES.forEach((p,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=p.k;b.onclick=()=>{map.setView(p.ll,20);show(i)};pick.appendChild(b)});
+document.getElementById('cp').onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('ll').textContent);e.target.textContent='Copied ✓'};
+show(0);
+</script>
+<script src="../deck.js"></script>
+</body></html>

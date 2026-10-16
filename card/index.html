@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Every link, a card · Laila</title>
+<meta name="description" content="How a link to Laila's pages looks when shared on LINE, and a QR code for every door.">
+<meta property="og:title" content="Every link, a card · Laila"><meta property="og:image" content="https://nanobotco.github.io/laila/card.png">
+<link rel="stylesheet" href="../deck.css">
+<style>
+.lchat{background:#8cabd9;border-radius:18px;padding:16px;min-height:360px}
+.bub{background:#a3e98b;border-radius:18px 4px 18px 18px;padding:8px 12px;margin-left:auto;width:max-content;max-width:90%;font-size:14px;word-break:break-all}
+.og{background:#fff;border-radius:14px;overflow:hidden;margin:8px 0 0 auto;max-width:300px}
+.og img{width:100%;aspect-ratio:1200/630;object-fit:cover;display:block;background:#eee}
+.og div{padding:8px 10px}
+.og b{display:block;font-size:14px}
+.og span{font-size:12px;color:#888}
+#qr{display:grid;place-items:center;background:#fff;border-radius:14px;padding:20px;border:1px solid var(--line)}
+#qr img,#qr canvas{width:220px!important;height:220px!important}
+.sign{text-align:center;font-family:var(--display);font-size:24px;font-weight:700;margin-top:10px}
+</style>
+</head><body>
+<main>
+<span class="try">Try it · pick a page</span>
+<h1>Every link,<br><em>a card.</em></h1>
+<div class="chips" id="pick"></div>
+<div class="grid2">
+  <div class="panel"><h2>Sent on LINE</h2>
+    <div class="lchat"><div class="bub" id="b-u"></div><div class="og"><img id="b-img" alt=""><div><b id="b-t"></b><span id="b-h"></span></div></div></div>
+  </div>
+  <div class="panel"><h2>On the door</h2>
+    <div id="qr"></div><div class="sign" id="b-s"></div>
+    <p style="text-align:center"><button class="btn ghost" id="dl">Download QR</button></p>
+  </div>
+</div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const P=[
+ {k:'💱 Exchange',u:'https://laila-exchange.nanobotco.workers.dev/',t:'Laila Money Exchange · Chiang Rai',img:'../img/exchange-card.jpg',s:'Live rates · ดูเรท'},
+ {k:'🛂 Visa',u:'https://motdang.net/cr/p/laila-s-visa-services-crcuratedlailasvisa.html',t:"Laila's Visa Services",img:'https://motdang.net/card.png',s:'Visas · วีซ่า'},
+ {k:'👜 Consignment',u:'https://motdang.net/cr/p/laila-s-designer-consignment-crcuratedlailasconsignment.html',t:"Laila's Designer Consignment",img:'https://motdang.net/card.png',s:'Consign · ฝากขาย'},
+ {k:'🌄 Chiang Rai, Slowly',u:'https://motdang.net/chiang-rai/',t:'Chiang Rai, Slowly',img:'https://motdang.net/chiang-rai/card.jpg',s:'Tours · เที่ยว'},
+ {k:'♛ This deck',u:'https://nanobotco.github.io/laila/',t:'Laila · twenty businesses, one LINE',img:'../card.png',s:'Scan me'}
+];
+const qrBox=document.getElementById('qr');let qr;
+function show(i){const p=P[i];document.querySelectorAll('#pick .chip').forEach((c,k)=>c.classList.toggle('on',k===i));
+ document.getElementById('b-u').textContent=p.u;document.getElementById('b-img').src=p.img;document.getElementById('b-t').textContent=p.t;document.getElementById('b-h').textContent=new URL(p.u).host;document.getElementById('b-s').textContent=p.s;
+ qrBox.innerHTML='';qr=new QRCode(qrBox,{text:p.u,width:440,height:440,colorDark:'#1c1a17',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});}
+const pick=document.getElementById('pick');P.forEach((p,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=p.k;b.onclick=()=>show(i);pick.appendChild(b)});
+document.getElementById('dl').onclick=()=>{const c=qrBox.querySelector('canvas');if(!c)return;const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='laila-qr.png';a.click()};
+show(0);
+</script>
+<script src="../deck.js"></script>
+</body></html>

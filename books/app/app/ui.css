@@ -1,0 +1,459 @@
+/* ui.css — one accent colour, one typeface stack, and enough air that nothing
+   needs explaining. Light and dark both come from the same tokens. */
+
+:root {
+  --accent: #1f6f5c;
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
+  --accent-line: color-mix(in srgb, var(--accent) 28%, transparent);
+  --bg: #f7f7f5;
+  --panel: #ffffff;
+  --panel-2: #fbfbfa;
+  --ink: #1a1a18;
+  --ink-soft: #5f5f58;
+  --ink-faint: #8c8c84;
+  --line: #e4e4de;
+  --good: #1f7a44;
+  --warn: #9a5b00;
+  --bad: #a32020;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14150f;
+    --panel: #1c1d17;
+    --panel-2: #212219;
+    --ink: #eceadf;
+    --ink-soft: #b3b1a4;
+    --ink-faint: #85837a;
+    --line: #2e2f27;
+    --good: #66c28a;
+    --warn: #dda34a;
+    --bad: #e08080;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Thai",
+        "Sarabun", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+/* ---- frame ------------------------------------------------------------- */
+
+.app { display: grid; grid-template-columns: 232px 1fr; min-height: 100vh; }
+
+.side {
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  padding: 18px 14px;
+  display: flex; flex-direction: column; gap: 18px;
+  position: sticky; top: 0; height: 100vh; overflow: auto;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; padding: 2px 6px; }
+.brand .mark {
+  width: 38px; height: 38px; flex: 0 0 38px;
+  border-radius: 9px; background: var(--accent); color: #fff;
+  display: grid; place-items: center; font-weight: 650; letter-spacing: .5px;
+}
+.brand .name { font-weight: 620; line-height: 1.25; }
+.brand .sub { color: var(--ink-faint); font-size: 12px; }
+
+/* Which books are open. A practice keeps several sets and switches between
+   them all day, so this sits above the sections rather than inside settings. */
+.switcher select {
+  width: 100%; padding: 9px 10px; border-radius: 9px;
+  border: 1px solid var(--line); background: var(--panel-2); color: var(--ink);
+}
+.switcher select:focus { outline: 2px solid var(--accent-line); }
+
+nav { display: flex; flex-direction: column; gap: 2px; }
+nav button {
+  text-align: left; background: none; border: 0; padding: 9px 10px;
+  border-radius: 8px; cursor: pointer; color: var(--ink-soft);
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+}
+nav button:hover { background: var(--panel-2); color: var(--ink); }
+nav button[aria-current="true"] { background: var(--accent-soft); color: var(--ink); font-weight: 560; }
+nav .tag {
+  font-size: 11px; padding: 1px 6px; border-radius: 99px;
+  background: var(--accent); color: #fff; font-weight: 600;
+}
+nav .tag.quiet { background: var(--line); color: var(--ink-soft); }
+
+.side-foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+
+.main { padding: 26px 30px 60px; max-width: 1180px; }
+
+.head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+.head h1 { font-size: 22px; margin: 0; font-weight: 640; letter-spacing: -.01em; }
+.head .when { color: var(--ink-faint); font-size: 13px; }
+.head .actions { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ---- bits -------------------------------------------------------------- */
+
+.btn {
+  border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+  padding: 8px 13px; border-radius: 8px; cursor: pointer;
+}
+.btn:hover { border-color: var(--accent-line); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { filter: brightness(1.06); }
+.btn.quiet { background: none; border-color: transparent; color: var(--ink-soft); }
+.btn.small { padding: 5px 9px; font-size: 13px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--panel-2); border: 1px solid var(--line);
+  border-radius: 99px; padding: 4px 6px 4px 11px; font-size: 12px; color: var(--ink-soft);
+}
+.chip .dot { width: 7px; height: 7px; border-radius: 99px; background: var(--warn); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 15px 16px; box-shadow: var(--shadow);
+}
+.card .k { color: var(--ink-faint); font-size: 12.5px; }
+.card .v { font-size: 25px; font-weight: 620; letter-spacing: -.02em; margin-top: 3px; font-variant-numeric: tabular-nums; }
+.card .n { color: var(--ink-soft); font-size: 12.5px; margin-top: 4px; }
+.card.click { cursor: pointer; }
+.card.click:hover { border-color: var(--accent-line); }
+
+.panel {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+}
+.panel + .panel, .cards + .panel, .panel + .cards { margin-top: 18px; }
+.panel h2 {
+  margin: 0; padding: 13px 16px; font-size: 14px; font-weight: 600;
+  border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px;
+}
+.panel h2 .right { margin-left: auto; font-weight: 450; color: var(--ink-faint); font-size: 13px; }
+.panel .body { padding: 14px 16px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th {
+  text-align: left; font-weight: 550; color: var(--ink-faint); font-size: 12px;
+  text-transform: uppercase; letter-spacing: .04em; padding: 9px 16px; border-bottom: 1px solid var(--line);
+}
+td { padding: 11px 16px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+tr:last-child td { border-bottom: 0; }
+tbody tr.click { cursor: pointer; }
+tbody tr.click:hover { background: var(--panel-2); }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.dim { color: var(--ink-faint); }
+.strong { font-weight: 600; }
+
+.pill {
+  display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 12px;
+  background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-soft);
+}
+.pill.good { color: var(--good); border-color: color-mix(in srgb, var(--good) 35%, var(--line)); }
+.pill.warn { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 35%, var(--line)); }
+.pill.bad { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 35%, var(--line)); }
+
+.empty { padding: 26px 16px; color: var(--ink-faint); text-align: center; }
+
+.bar {
+  height: 6px; border-radius: 99px; background: var(--line); overflow: hidden; margin-top: 7px;
+}
+.bar > span { display: block; height: 100%; background: var(--accent); }
+
+/* ---- the month --------------------------------------------------------- */
+
+.cal-grid-head {
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px;
+  color: var(--ink-faint); font-size: 12px; margin-bottom: 6px; padding: 0 2px;
+}
+/* minmax(0, 1fr), not 1fr: a long invoice line would otherwise set the column
+   width and the week would come out crooked. */
+.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.cal-day {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 9px;
+  padding: 7px 8px; min-height: 104px; cursor: pointer; min-width: 0;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.cal-day:hover { border-color: var(--accent-line); }
+.cal-day.empty { background: none; border: 0; cursor: default; min-height: 0; }
+.cal-day.today { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent-line); }
+.cal-day.holiday { background: var(--accent-soft); }
+.cal-head { display: flex; align-items: baseline; gap: 6px; }
+.cal-head .n { font-weight: 620; }
+.cal-holiday {
+  font-size: 11px; color: var(--ink-soft); overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+}
+.cal-items { display: flex; flex-direction: column; gap: 3px; flex: 1 1 auto; min-width: 0; }
+.cal-item {
+  font-size: 11.5px; line-height: 1.25; padding: 2px 5px; border-radius: 5px;
+  background: var(--panel-2); border-left: 2px solid var(--line);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cal-item.good { border-left-color: var(--good); }
+.cal-item.warn { border-left-color: var(--warn); }
+.cal-item.bad { border-left-color: var(--bad); }
+.cal-item .amt { color: var(--ink-faint); margin-left: 5px; }
+/* The day's own shape: there when you look for it, quiet when you do not. */
+.cal-sun { font-size: 10.5px; color: var(--ink-faint); opacity: .75; }
+
+.day-quiet {
+  margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line);
+  font-size: 12.5px; color: var(--ink-soft);
+  display: flex; flex-direction: column; gap: 3px;
+}
+.day-quiet .prayer { display: flex; gap: 12px; flex-wrap: wrap; opacity: .7; font-size: 12px; }
+
+/* ---- result strip ------------------------------------------------------ */
+
+.result {
+  position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+  background: var(--panel); border: 1px solid var(--accent-line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 12px 16px; max-width: min(680px, 92vw); z-index: 60;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.result .line { font-size: 14px; }
+.result .line + .line { color: var(--ink-soft); font-size: 13px; }
+
+/* ---- dialogs ----------------------------------------------------------- */
+
+dialog {
+  border: 1px solid var(--line); border-radius: 14px; padding: 0;
+  background: var(--panel); color: var(--ink); box-shadow: var(--shadow);
+  width: min(720px, 94vw); max-height: 88vh;
+}
+dialog::backdrop { background: rgba(0,0,0,.35); backdrop-filter: blur(2px); }
+dialog .dlg-head {
+  padding: 15px 18px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 10px; font-weight: 600;
+}
+dialog .dlg-body { padding: 16px 18px; overflow: auto; max-height: calc(88vh - 124px); }
+dialog .dlg-foot {
+  padding: 12px 18px; border-top: 1px solid var(--line);
+  display: flex; gap: 8px; justify-content: flex-end; align-items: center;
+}
+dialog .dlg-foot .left { margin-right: auto; color: var(--ink-soft); font-size: 13px; }
+
+.field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 13px; }
+.field > label { font-size: 12.5px; color: var(--ink-soft); }
+.field input, .field select, .field textarea {
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
+  padding: 9px 10px; width: 100%;
+}
+.field input:focus, .field select:focus { outline: 2px solid var(--accent-line); border-color: var(--accent); }
+.field.bad input { border-color: var(--bad); }
+.row { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.check { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+.check input { width: 17px; height: 17px; accent-color: var(--accent); }
+
+.lines-head, .line-row {
+  display: grid; grid-template-columns: 1fr 80px 90px 120px 30px; gap: 8px; align-items: center;
+}
+.lines-head { font-size: 12px; color: var(--ink-faint); margin-bottom: 6px; }
+.line-row { margin-bottom: 8px; }
+.line-row input { margin: 0; }
+.totals { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.totals div { display: flex; justify-content: space-between; padding: 3px 0; font-variant-numeric: tabular-nums; }
+.totals div.big { font-weight: 640; font-size: 16px; }
+.totals div.note { color: var(--ink-soft); font-size: 13px; }
+
+/* What the customer implies, said once, where the choice was made. */
+.said { color: var(--ink-soft); font-size: 12.5px; margin: -4px 0 12px; line-height: 1.45; }
+.said:empty { display: none; }
+.said b { font-weight: 600; color: var(--ink); }
+
+/* A QR carries its own dimensions; the box decides how big it is shown. */
+.qr { background: #fff; padding: 10px; border-radius: 10px; }
+.qr svg { display: block; width: 100%; height: auto; }
+
+/* A drawer: there if you open it, silent if you do not. */
+.drawer {
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); margin-top: 18px; overflow: hidden;
+}
+.drawer > summary {
+  padding: 13px 16px; font-size: 14px; font-weight: 600; cursor: pointer;
+  color: var(--ink-soft); list-style: none;
+}
+.drawer > summary::-webkit-details-marker { display: none; }
+.drawer > summary::before { content: '› '; color: var(--ink-faint); }
+.drawer[open] > summary { border-bottom: 1px solid var(--line); color: var(--ink); }
+.drawer[open] > summary::before { content: '⌄ '; }
+
+/* ---- the document ------------------------------------------------------ */
+
+.doc {
+  background: #fff; color: #17170f; padding: 34px 38px; border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.doc .doc-head { display: flex; gap: 20px; align-items: flex-start; border-bottom: 2px solid var(--accent); padding-bottom: 16px; }
+.doc .doc-title { margin-left: auto; text-align: right; }
+.doc .doc-title .th { font-size: 19px; font-weight: 700; }
+.doc .doc-title .en { color: #6a6a5f; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+.doc .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; font-size: 13px; }
+.doc .parties h4 { margin: 0 0 5px; font-size: 11px; color: #6a6a5f; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+.doc table { font-size: 13px; }
+.doc th { color: #6a6a5f; border-bottom: 1px solid #ddddd4; padding: 8px 6px; }
+.doc td { border-bottom: 1px solid #eeeee7; padding: 9px 6px; }
+.doc .doc-totals { margin-left: auto; width: min(320px, 100%); margin-top: 14px; font-size: 13px; }
+.doc .doc-totals div { display: flex; justify-content: space-between; padding: 4px 6px; font-variant-numeric: tabular-nums; }
+.doc .doc-totals div.grand { border-top: 1px solid #ddddd4; border-bottom: 2px solid #17170f; font-weight: 700; font-size: 15px; margin-top: 4px; }
+.doc .words { margin-top: 14px; font-size: 12.5px; color: #4a4a40; }
+.doc .sigs { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 46px; font-size: 12px; color: #6a6a5f; }
+.doc .sigs div { border-top: 1px solid #c9c9bd; padding-top: 6px; text-align: center; }
+
+.mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12.5px; white-space: pre; overflow-x: auto; }
+
+@media print {
+  .side, .head .actions, .result, .dlg-head, .dlg-foot { display: none !important; }
+  body, .app, .main { background: #fff; display: block; }
+  dialog { border: 0; box-shadow: none; width: auto; max-height: none; }
+  dialog .dlg-body { max-height: none; padding: 0; overflow: visible; }
+  .doc { border: 0; padding: 0; }
+}
+
+/* ---- the phone ---------------------------------------------------------
+
+   Same screens, reachable with a thumb: the brand becomes a slim top bar, the
+   sections become a scrolling row pinned to the bottom of the window, and every
+   table turns into one card per row — a five-column ledger line is unreadable
+   at 375px however small the type gets. */
+
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; }
+
+  .side {
+    position: sticky; top: 0; height: auto; z-index: 40;
+    flex-direction: row; align-items: center; gap: 10px;
+    padding: 9px 12px; border-right: 0; border-bottom: 1px solid var(--line);
+  }
+  .brand .sub { display: none; }
+  .brand .mark { width: 32px; height: 32px; flex-basis: 32px; font-size: 13px; }
+  .brand .name { font-size: 15px; }
+  .side-foot { margin: 0 0 0 auto; flex-direction: row; align-items: center; gap: 8px; }
+  .brand-text { display: none; }
+  .switcher { flex: 1 1 auto; min-width: 0; margin-left: 4px; }
+  .switcher select { min-height: 38px; font-size: 15px; }
+  .side-foot .chip { padding: 3px 5px 3px 9px; }
+  .side-foot .chip .dot { margin: 0; }
+  #sample-label { display: none; }
+  /* Starting over is a Setup decision on a phone — too easy to hit by accident
+     beside the brand. */
+  #reset { display: none; }
+
+  nav {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    flex-direction: row; gap: 4px; overflow-x: auto; scrollbar-width: none;
+    background: var(--panel); border-top: 1px solid var(--line);
+    padding: 7px 10px calc(7px + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 18px rgba(0,0,0,.08);
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav button {
+    flex: 0 0 auto; min-height: 42px; padding: 9px 14px; border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .main { padding: 16px 14px calc(78px + env(safe-area-inset-bottom)); }
+  .head { margin-bottom: 14px; }
+  .head h1 { font-size: 20px; }
+  .head .actions { width: 100%; margin-left: 0; }
+  .head .actions .btn { flex: 1 1 auto; min-height: 44px; }
+
+  .cards { grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; }
+  .card { padding: 12px 13px; }
+  .card .v { font-size: 21px; }
+
+  /* one card per row */
+  table, thead, tbody, tr, th, td { display: block; }
+  thead { display: none; }
+  tbody tr {
+    padding: 12px 14px; border-bottom: 1px solid var(--line);
+    display: grid; grid-template-columns: auto 1fr; gap: 3px 12px;
+  }
+  tbody tr:last-child { border-bottom: 0; }
+  td { padding: 0; border: 0; display: contents; }
+  td::before {
+    content: attr(data-label); color: var(--ink-faint); font-size: 12px;
+    align-self: center;
+  }
+  td:empty::before, td[data-label=""]::before { content: ""; }
+  td.num { text-align: left; }
+  /* the first cell of each row reads as its heading */
+  tbody tr td:first-child { font-weight: 600; }
+  tbody tr td:first-child::before { font-weight: 400; }
+  td .btn { min-height: 38px; margin-top: 4px; }
+  .phone-hide { display: none !important; }
+  tbody tr .pill { justify-self: start; }
+  .bar { grid-column: 1 / -1; }
+
+  /* `display` has to be scoped to an OPEN dialog: setting it unconditionally
+     overrides the browser's own `display: none` and a closed sheet stays on
+     screen. */
+  dialog[open] {
+    width: 100vw; max-width: 100vw; max-height: 100dvh; height: 100dvh;
+    margin: 0; border-radius: 0; border: 0;
+    display: flex; flex-direction: column;
+  }
+  dialog .dlg-body { max-height: none; flex: 1 1 auto; }
+  dialog .dlg-foot { flex-wrap: wrap; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+  dialog .dlg-foot .btn { flex: 1 1 auto; min-height: 44px; }
+
+  .row { grid-template-columns: 1fr; }
+  .field input, .field select { min-height: 44px; font-size: 16px; }  /* 16px stops iOS zooming */
+  .lines-head { display: none; }
+  /* A line becomes a small card: what it is, then how many of what, then the
+     price. The remove button sits in the corner instead of in the flow. */
+  .line-row {
+    position: relative; grid-template-columns: 1fr 1fr; gap: 8px;
+    padding: 34px 10px 10px; border: 1px solid var(--line);
+    border-radius: 10px; margin-bottom: 10px;
+  }
+  .line-row .desc, .line-row .price { grid-column: 1 / -1; }
+  .line-row input { min-height: 42px; font-size: 16px; width: 100%; }
+  .line-row > button:last-child { position: absolute; top: 5px; right: 5px; }
+
+  .result { left: 10px; right: 10px; bottom: calc(72px + env(safe-area-inset-bottom)); transform: none; max-width: none; }
+
+  .doc { padding: 18px 16px; }
+  .doc .doc-head { flex-direction: column; gap: 10px; }
+  .doc .doc-title { margin-left: 0; text-align: left; }
+  .doc .parties { grid-template-columns: 1fr; gap: 14px; }
+  .doc .doc-totals { width: 100%; }
+  .doc table, .doc thead, .doc tbody, .doc tr, .doc th, .doc td { display: revert; }
+  .doc thead { display: revert; }
+  .doc td { display: table-cell; }
+  .doc td::before { content: none; }
+  .doc { overflow-x: auto; }
+  .doc .sigs { grid-template-columns: 1fr; gap: 26px; margin-top: 30px; }
+
+  /* A month at 375px is a list of days that have something on them. */
+  .cal-grid-head { display: none; }
+  .cal-grid { grid-template-columns: 1fr; gap: 4px; }
+  .cal-day { min-height: 0; flex-direction: row; align-items: flex-start; gap: 10px; }
+  .cal-day.empty { display: none; }
+  .cal-head { flex: 0 0 64px; flex-direction: column; align-items: flex-start; gap: 0; }
+  .cal-items { flex: 1 1 auto; }
+  .cal-sun { flex: 0 0 auto; align-self: center; }
+}
+
+@media (max-width: 420px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+  .card .v { font-size: 19px; }
+  .head h1 { font-size: 19px; }
+}
