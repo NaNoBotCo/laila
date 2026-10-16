@@ -4,7 +4,7 @@
 <title>22 languages · Laila</title>
 <meta name="description" content="Laila's counter, in 22 languages: type, translate, listen. Live from motdang.net.">
 <meta property="og:title" content="22 languages · Laila"><meta property="og:image" content="https://nanobotco.github.io/laila/card.png"><meta property="og:image:alt" content="Laila. Twenty businesses. One LINE. Ten working demos from motdang.net">
-<link rel="stylesheet" href="../deck.css?v=5">
+<link rel="stylesheet" href="../deck.css?v=6">
 <style>
 .row{display:flex;gap:8px;flex-wrap:wrap}
 .row select{width:auto;flex:0 0 auto}
@@ -55,5 +55,5 @@ document.getElementById('to').onchange=go;
 document.getElementById('say').onclick=()=>{const u=new SpeechSynthesisUtterance(document.getElementById('t').textContent);u.lang=LOC[document.getElementById('to').value]||'th-TH';speechSynthesis.cancel();speechSynthesis.speak(u)};
 go();
 </script>
-<script src="../deck.js?v=5"></script>
+<script src="../deck.js?v=6"></script>
 </body></html>

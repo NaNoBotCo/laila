@@ -4,7 +4,7 @@
 <title>One LINE · Laila</title>
 <meta name="description" content="Every business in one LINE chat: a morning message, one-tap yes or no, questions answered.">
 <meta property="og:title" content="One LINE · Laila"><meta property="og:image" content="https://nanobotco.github.io/laila/card.png"><meta property="og:image:alt" content="Laila. Twenty businesses. One LINE. Ten working demos from motdang.net">
-<link rel="stylesheet" href="../deck.css?v=5">
+<link rel="stylesheet" href="../deck.css?v=6">
 <style>
 .wrap{display:grid;grid-template-columns:380px 1fr;gap:34px;align-items:start}
 @media (max-width:820px){.wrap{grid-template-columns:1fr}}
@@ -93,5 +93,5 @@ document.querySelectorAll('[data-q]').forEach(c=>c.onclick=()=>ask(c.dataset.q))
 document.getElementById('f').onsubmit=e=>{e.preventDefault();const q=document.getElementById('q');if(q.value.trim()){ask(q.value.trim());q.value=''}};
 morning();
 </script>
-<script src="../deck.js?v=5"></script>
+<script src="../deck.js?v=6"></script>
 </body></html>
