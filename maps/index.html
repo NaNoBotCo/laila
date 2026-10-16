@@ -58,13 +58,13 @@
 <script>
 const PLACES=[
  {k:'💱 Exchange',nm:'Laila Money Exchange',ct:'Currency exchange service',ad:'48–49 Thai Wiwat Alley, Wiang, Mueang Chiang Rai 57000',ph:'053-160611',web:'laila-exchange.nanobotco.workers.dev',ll:[19.9060,99.8325]},
- {k:'🚤 Laila Group',nm:'Laila Group · tours, slow boat, cars',ct:'Tour agency',ad:'869/51 Thai Viwat Alley, Wiang, Mueang Chiang Rai 57000',ph:'+66 84 739 9996',web:'slowboatthailandlaos.com',ll:[19.90606,99.83246]},
+ {k:'🚤 Laila Group',nm:'Laila Group · tours, slow boat, cars',ct:'Tour agency',ad:'869/51 Thai Viwat Alley, Wiang, Mueang Chiang Rai 57000',ph:'+66 84 739 9996',web:'slowboatthailandlaos.com',ll:[19.90622,99.83236]},
  {k:'🛂 Visa',nm:"Laila's Visa Services",ct:'Visa consultant',ad:'48–49 Thai Wiwat Alley, Wiang, Mueang Chiang Rai 57000',ph:'065-551-4499',web:'visaservicesthailand.com',ll:[19.90612,99.83262]},
  {k:'👜 Consignment',nm:"Laila's Designer Consignment",ct:'Consignment shop',ad:'Thai Wiwat Alley, beside the visa office, Mueang Chiang Rai 57000',ph:'Laila\'s to say',web:'—',ll:[19.90598,99.83268]}
 ];
 const map=L.map('map',{scrollWheelZoom:false}).setView(PLACES[0].ll,19);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:20,maxNativeZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
-const ic=t=>L.divIcon({className:'',html:`<div style="font-size:30px;transform:translate(-50%,-90%);filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))">${t}</div>`});
+const ic=t=>L.divIcon({className:'',html:`<div style="font-size:22px;width:42px;height:42px;display:grid;place-items:center;background:#fff;border:3px solid #b08a3e;border-radius:50% 50% 50% 0;transform:translate(-50%,-110%) rotate(-45deg);box-shadow:0 3px 8px rgba(0,0,0,.3)"><span style="transform:rotate(45deg)">${t}</span></div>`});
 let cur=0;const pins=PLACES.map((p,i)=>{const m=L.marker(p.ll,{draggable:true,icon:ic(p.k.split(' ')[0])}).addTo(map);m.on('dragend',()=>{p.ll=[m.getLatLng().lat,m.getLatLng().lng];show(i)});m.on('click',()=>show(i));return m});
 function show(i){cur=i;const p=PLACES[i];document.querySelectorAll('#pick .chip').forEach((c,k)=>c.classList.toggle('on',k===i));
  const ll=p.ll.map(v=>v.toFixed(6)).join(', ');document.getElementById('ll').textContent=ll;document.getElementById('gm').href='https://www.google.com/maps?q='+p.ll.join(',');

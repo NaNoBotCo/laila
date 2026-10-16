@@ -24,7 +24,7 @@ form{display:flex;gap:8px}
 <div class="grid2">
   <div class="panel">
     <p class="vs">Google Maps</p>
-    <img class="shot" src="../img/google-maps-2026-10-16.jpg" alt="Google Maps search for Laila Money Exchange Chiang Rai, 16 October 2026: two money changers in Chiang Mai, Super Money and mr.pierre" width="800" height="600">
+    <img class="shot" src="../img/google-maps-2026-10-16-list.jpg" alt="Google Maps search for Laila Money Exchange Chiang Rai, 16 October 2026: two money changers in Chiang Mai, Super Money and mr.pierre" width="324" height="300">
     <p class="small">16 Oct 2026, “Laila Money Exchange Chiang Rai”: two changers in <b>Chiang Mai</b>.</p>
     <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/Laila+Money+Exchange+Chiang+Rai">Try Google now ↗</a>
   </div>
@@ -53,7 +53,7 @@ async function go(q){
     const ms=Math.round(performance.now()-t0);
     res.innerHTML=d.results.slice(0,6).map((p,k)=>{const her=/laila/i.test(p.id+(p.nameEn||'')+p.name);
       return `<li class="${her?'her':''}" style="animation-delay:${k*60}ms"><span class="k">${her?'♛':(k+1)}</span><div><a href="${p.url}" target="_blank" rel="noopener">${p.nameEn||p.name}</a><div class="p">${p.nameEn&&p.name!==p.nameEn?p.name+' · ':''}${p.province==='cr'?'Chiang Rai':'Chiang Mai'}</div></div></li>`}).join('')||'<li>Nothing yet.</li>';
-    meta.textContent=`${d.total} places matched · ${ms} ms · motdang.net/api/v1/search`;
+    meta.textContent=`${d.total} places matched · motdang.net/api/v1/search`;
   }catch(e){res.innerHTML='<li>Offline? <a href="https://motdang.net/find?q='+encodeURIComponent(q)+'">Open on motdang.net</a></li>'}
 }
 document.getElementById('f').onsubmit=e=>{e.preventDefault();go(document.getElementById('q').value)};
