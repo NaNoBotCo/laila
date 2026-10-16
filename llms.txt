@@ -18,3 +18,4 @@
 - [One set of books](https://nanobotco.github.io/laila/books/)
 - [Every link, a card](https://nanobotco.github.io/laila/card/)
 - [Money already spent](https://nanobotco.github.io/laila/sunk/)
+- [Start with one business](https://nanobotco.github.io/laila/hello/): send one sheet on LINE (@964yxgnk); the first business is free

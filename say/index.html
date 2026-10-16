@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Presenter lines · Laila</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../deck.css">
+<style>
+main{max-width:760px}
+.tip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 26px}
+@media (max-width:640px){.tip{grid-template-columns:1fr}}
+.tip div{background:#1c1a17;color:#fff;border-radius:14px;padding:14px;font-weight:600}
+.ln{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.ln .k{font-family:var(--display);font-size:30px;color:var(--gold);line-height:1}
+.ln a{text-decoration:none}
+.en{font-size:18px;font-weight:600}
+.th{color:#5a4a2a;margin-top:2px}
+.tp{font-size:14px;color:var(--teal);margin-top:4px}
+.last .en{font-size:22px}
+.qa{margin-top:30px}
+.qa h3{margin:18px 0 4px;font-size:17px}
+</style>
+</head><body>
+<main>
+<span class="try">For whoever presents</span>
+<h1>Presenter <em>lines.</em></h1>
+<div class="tip">
+  <div>1 · Hand her the phone. Let her tap.</div>
+  <div>2 · On the last slide: ask, then stop talking.</div>
+  <div>3 · Don’t know? “Nan will answer today.”</div>
+</div>
+<p class="small">Marcus: ครับ in place of ค่ะ. In the deck, 🎤 or P shows each slide’s line at the bottom.</p>
+<div id="lines"></div>
+<div class="qa">
+  <h2 class="try" style="margin:0">If she asks</h2>
+  <h3>How much?</h3><div class="en">The first business is free. Nan sends the price for all twenty today.</div><div class="th" lang="th">ธุรกิจแรกฟรีค่ะ ราคาทั้งหมด คุณแนนส่งให้วันนี้ค่ะ</div>
+  <h3>Is my data safe?</h3><div class="en">We take totals only. No passports, no bank logins. You keep the owner login.</div><div class="th" lang="th">เราขอแค่ยอดรวมค่ะ ไม่ขอพาสปอร์ต ไม่ขอรหัสธนาคาร คุณไลลาถือรหัสเจ้าของเอง</div>
+  <h3>Who does the work?</h3><div class="en">Mot Dang’s team, next door at 869/77.</div><div class="th" lang="th">ทีมมดแดงค่ะ ห้องข้างๆ เลขที่ 869/77</div>
+  <h3>What if I want to stop?</h3><div class="en">Stop any business, any month. Your files come back.</div><div class="th" lang="th">หยุดได้ทุกเดือนค่ะ ไฟล์คืนให้ทั้งหมด</div>
+  <h3>I already pay for apps.</h3><div class="en">That money is gone either way. Look only at what you pay from today. (Slide 10.)</div><div class="th" lang="th">เงินที่จ่ายไปแล้วไม่กลับมาค่ะ ดูแค่เงินที่จะจ่ายต่อจากนี้</div>
+  <h3>“Let me think.”</h3><div class="en">Of course. Can I send you the link to try tonight?</div><div class="th" lang="th">ได้เลยค่ะ ขอส่งลิงก์ให้ลองเล่นคืนนี้ได้ไหมคะ</div>
+</div>
+<p style="margin-top:30px"><a class="btn gold" href="../?say">Open the deck with lines ›</a></p>
+</main>
+<script src="../deck.js" data-noslide></script>
+<script>
+document.getElementById('lines').innerHTML=LAILA.SAY.map((s,i)=>`<div class="ln${i===LAILA.SAY.length-1?' last':''}"><a class="k" href="../${s[0]}?say">${i+1}</a><div><div class="en">${s[1]}</div><div class="th" lang="th">${s[2]}</div><div class="tp">👆 ${s[3]}</div></div></div>`).join('');
+</script>
+</body></html>
