@@ -4,7 +4,7 @@
 <title>Every link, a card · Laila</title>
 <meta name="description" content="How a link to Laila's pages looks when shared on LINE, and a QR code for every door.">
 <meta property="og:title" content="Every link, a card · Laila"><meta property="og:image" content="https://nanobotco.github.io/laila/card.png"><meta property="og:image:alt" content="Laila. Twenty businesses. One LINE. Ten working demos from motdang.net">
-<link rel="stylesheet" href="../deck.css?v=5">
+<link rel="stylesheet" href="../deck.css?v=6">
 <style>
 .lchat{background:#8cabd9;border-radius:18px;padding:16px;min-height:360px}
 .bub{background:#a3e98b;border-radius:18px 4px 18px 18px;padding:8px 12px;margin-left:auto;width:fit-content;max-width:90%;font-size:14px;word-break:break-all}
@@ -49,5 +49,5 @@ const pick=document.getElementById('pick');P.forEach((p,i)=>{const b=document.cr
 document.getElementById('dl').onclick=()=>{const c=qrBox.querySelector('canvas');if(!c)return;const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='laila-qr.png';a.click()};
 show(0);
 </script>
-<script src="../deck.js?v=5"></script>
+<script src="../deck.js?v=6"></script>
 </body></html>

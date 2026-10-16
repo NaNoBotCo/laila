@@ -3,7 +3,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Presenter lines · Laila</title>
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="../deck.css?v=5">
+<link rel="stylesheet" href="../deck.css?v=6">
 <style>
 main{max-width:760px}
 .tip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 26px}
@@ -32,7 +32,7 @@ main{max-width:760px}
 <div id="lines"></div>
 <div class="qa">
   <h2 class="try" style="margin:0">If she asks</h2>
-  <h3>How much?</h3><div class="en">The first business is free. Nan sends the price for all twenty today.</div><div class="th" lang="th">ธุรกิจแรกฟรีค่ะ ราคาทั้งหมด คุณแนนส่งให้วันนี้ค่ะ</div>
+  <h3>How much?</h3><div class="en">The first business is ฿20,000 for its month. Nan sends the price for all twenty today.</div><div class="th" lang="th">ธุรกิจแรกเดือนละสองหมื่นบาทค่ะ ราคาทั้งหมด คุณแนนส่งให้วันนี้ค่ะ</div>
   <h3>Is my data safe?</h3><div class="en">We take totals only. No passports, no bank logins. You keep the owner login.</div><div class="th" lang="th">เราขอแค่ยอดรวมค่ะ ไม่ขอพาสปอร์ต ไม่ขอรหัสธนาคาร คุณไลลาถือรหัสเจ้าของเอง</div>
   <h3>Who does the work?</h3><div class="en">Mot Dang’s team, next door at 869/77.</div><div class="th" lang="th">ทีมมดแดงค่ะ ห้องข้างๆ เลขที่ 869/77</div>
   <h3>What if I want to stop?</h3><div class="en">Stop any business, any month. Your files come back.</div><div class="th" lang="th">หยุดได้ทุกเดือนค่ะ ไฟล์คืนให้ทั้งหมด</div>
@@ -41,7 +41,7 @@ main{max-width:760px}
 </div>
 <p style="margin-top:30px"><a class="btn gold" href="../?say">Open the deck with lines ›</a></p>
 </main>
-<script src="../deck.js?v=5" data-noslide></script>
+<script src="../deck.js?v=6" data-noslide></script>
 <script>
 document.getElementById('lines').innerHTML=LAILA.SAY.map((s,i)=>`<div class="ln${i===LAILA.SAY.length-1?' last':''}"><a class="k" href="../${s[0]}?say">${i+1}</a><div><div class="en">${s[1]}</div><div class="th" lang="th">${s[2]}</div><div class="tp">👆 ${s[3]}</div></div></div>`).join('');
 </script>
